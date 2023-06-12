@@ -39,8 +39,28 @@ def set_animals(size):
         [res.append(x) for x in A2 if x not in res]
         return res
 
-DA = set_animals(8)
-print(DA,len(DA))
+def re_set_animals(size,per):
+    A = set_animals(size)
+    A1 = []
+    for a in A:
+        adj_vert = []
+        for j in a:
+            moves = [(j[0],j[1]+1),(j[0]+1,j[1]),(j[0]+1,j[1]+1)]
+            for k in moves:
+                if (k not in a):
+                    adj_vert.append(k)
+        res = []
+        [res.append(x) for x in adj_vert if x not in res]
+        if len(res)==per:
+            A1.append(a)
+    return A1
+
+print(re_set_animals(7,7))
+
+for i in range(9,10):
+    for j in range(1,30):
+        DA = re_set_animals(i,j)
+        print(len(DA),i+1,j)
 
 #t = open("dir_animal_sim.txt", "w")
 #for i in vert:
