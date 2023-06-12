@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -55,13 +56,13 @@ vector<vector<pair<int,int>>> re_set_animals(int size, int per){
                 }
             }
         }
-        vector<vector<pair<int,int>>> res;
-        for(auto x : adj_vert){
-            if(find(res.begin(),res.end(),x) == res.end()){
-                res.push_back(x);
-            }
-        }
-        if(res.size() == per){
+        sort(adj_vert.begin(), adj_vert.end(),[](pair<int,int> x, pair<int,int> y){ return (x.first < y.first) || (x.first==y.first && x.second<y.second); }  );
+        //Print the vector in its normalized and sorted form
+        for(auto p : adj_vert){ }
+        //Unique the vector
+        auto last = unique(adj_vert.begin(), adj_vert.end() );
+        adj_vert.erase(last, adj_vert.end());
+        if(adj_vert.size() == per){
             A1.push_back(a);
         }
     }
@@ -78,11 +79,9 @@ int main(){
         }
         cout << endl;
     }
-    for(int i=1; i<10; i++){
-        for(int j=1; j<30; j++){
-            DA = re_set_animals(i,j);
-            cout << DA.size() << "," << i+1 << "," << j << endl;
-        }
+    for(int j=1; j<30; j++){
+        DA = re_set_animals(9,j);
+        cout << DA.size() << "," << 10 << "," << j << endl;
     }
     return 0;
 }
