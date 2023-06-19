@@ -14,12 +14,12 @@ import subprocess
 
 print("ARG"+str(sys.argv))
 
-Edges = 1  # 1 if edges
+Edges = 0  # 1 if edges
            # 0 if vertices
 
-DataFiles=["dataedges.txt"]
+DataFiles=["dir_animal_sim_unif.txt"]
 #DataFiles=["datadots.txt"]
-ExportFiles =["plotfile1.pdf"]
+ExportFiles =["dir_animal_sim_unif.pdf"]
 c=-1
 for arg in sys.argv:
     c +=1
@@ -72,9 +72,12 @@ else:
         print("je fais ça ")
         for g in G:
             
-            plt.plot( g[0], g[1],color='green', marker='o', linestyle='dashed', linewidth=2, markersize=12 )
+            plt.plot( g[0], g[1],color='green', marker='o', linestyle='dashed', linewidth=2, markersize=5 )
             #xticks(np.arange(0, 21, step=10))
             #yticks(np.arange(0, 21, step=10))
+        plt.grid()
+        plt.xticks(range(20))
+        plt.yticks(range(20))
         plt.savefig(ExportFiles[NB])
         plt.close()
     print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
