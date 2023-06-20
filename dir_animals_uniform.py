@@ -59,7 +59,7 @@ def convert_dyck(path):
                 new_path.append(path[i])
         return new_path
     
-path = generate_dyck_path(20)
+path = generate_dyck_path(1000)
 new_path = convert_dyck(path)
 
 def convert_path(path):
@@ -69,11 +69,11 @@ def convert_path(path):
         if i == 'U':
             sum = sum + 1
             if sum > 0:
-                selected.append((sum,i))
+                selected.append(sum)
         elif i == 'D':
             sum = sum - 1
             if sum < 0:
-                selected.append((sum,i))
+                selected.append(sum)
     return selected
 
 def selected_to_dimer(path):
@@ -121,16 +121,47 @@ def heap_to_animal(heap):
     return vert
 
 selected = convert_path(new_path)
-dimers = selected_to_dimer(selected)
-heap = dimer_to_heap(dimers)
-vert = heap_to_animal(heap)
+#dimers = selected_to_dimer(selected)
+#heap = dimer_to_heap(dimers)
+#vert = heap_to_animal(heap)
 
+print(path)
+print(new_path)
 print(selected)
-print(dimers)
-print(heap)
-print(vert)
+#print(dimers)
+#print(heap)
+#print(vert)
 
 t = open("dir_animal_sim_unif.txt", "w")
-for i in vert:
-    t.writelines(",".join(list(map(str, i)))+"\n")
-print("Succesfully written in file")
+
+def path_to_animal(sel_path):
+    m = min(sel_path)
+    M = max(sel_path)
+    print(m,M)
+    H = {}
+    if m < 0:
+        for i in range(m,M):
+            H[i] = 0
+    else:
+        for i in range(m-1,M):
+            H[i] = 0
+    for i in sel_path:
+        if i > 0:
+            pos = i - 1
+        elif i < 0:
+            pos = i
+        if (pos+1 in H.keys()) and (pos-1 in H.keys()):
+            H[pos] = max(H[pos+1],H[pos],H[pos-1]) + 1
+        if (pos+1 in H.keys()) and (pos-1 not in H.keys()):
+            H[pos] = max(H[pos+1],H[pos]) + 1
+        if (pos+1 not in H.keys()) and (pos-1 in H.keys()):
+            H[pos] = max(H[pos],H[pos-1]) + 1
+        t.write(str(pos) + "," + str(H[pos]) + "\n")
+    print("written to file")
+
+path_to_animal(selected)
+
+#t = open("dir_animal_sim_unif.txt", "w")
+#for i in vert:
+#    t.writelines(",".join(list(map(str, i)))+"\n")
+#print("Succesfully written in file")
