@@ -7,3 +7,4 @@ An organized area to keep my simulations in place
 3. Simulation of directed animals in the triangular lattice uniformly
 4. Simulation of Motzkin left factors uniformly
 5. Counting of increasingly labelled directed animals in the square lattice
+6. Counting of increasingly labelled directed animals in the triangular lattice
