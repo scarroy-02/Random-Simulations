@@ -8,4 +8,4 @@ An organized area to keep my simulations in place
 4. Simulation of Motzkin left factors uniformly
 5. Counting of increasingly labelled directed animals in the square lattice
 6. Counting of increasingly labelled directed animals in the triangular lattice
-7. Tallying OEIS sequences to get Hook formula
+7. Tallying OEIS sequences to get Hook formula (Offline OEIS : https://oeis.org/wiki/Welcome#Compressed_Versions)
